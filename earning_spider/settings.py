@@ -21,6 +21,15 @@ NEWSPIDER_MODULE = 'earning_spider.spiders'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
+#数据库配置
+DATABASE = {'drivername': 'mysql+pymysql',
+            'host': '104.199.212.95',
+            'port': '3306',
+            'username': 'root',
+            'password': 'qwer1234',
+            'database': 'finance',
+            'query': {'charset': 'utf8'}}
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
@@ -47,7 +56,7 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'earning_spider.middlewares.EarningSpiderSpiderMiddleware': 543,
+#    'earning_spider.middlewares.earning_spiderSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
@@ -64,9 +73,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'earning_spider.pipelines.EarningSpiderPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'earning_spider.pipelines.EarningPipline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
