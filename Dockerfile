@@ -6,6 +6,15 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 ADD . /app
 
+
+
+RUN apk add -U tzdata
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+RUN echo "Asia/Shanghai" > /etc/timezone
+
+RUN date
+
 RUN apk add --no-cache python-dev gcc musl-dev openssl-dev libxml2-dev libxslt-dev libffi-dev libxml2 libxslt  \
     && pip3 install -r requirements.txt 
   
