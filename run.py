@@ -12,7 +12,10 @@ def crawlByName():
     process.crawl(EarningSpider)
     process.start()
 
-# 采用命令的方法来调用Scrapy http://gogit.itfanr.cc/xueer/CodeArticle/src/f2cfe75270a732e6298bc3567c8ee855a4453b08/Subject/Scrapy/Scrapy%E7%88%AC%E8%99%AB%E5%A6%82%E4%BD%95%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C%E4%B9%8B%E4%B8%80.md
+# 采用命令的方法来调用Scrapy
+# http://gogit.itfanr.cc/xueer/CodeArticle/src/f2cfe75270a732e6298bc3567c8ee855a4453b08/Subject/Scrapy/Scrapy%E7%88%AC%E8%99%AB%E5%A6%82%E4%BD%95%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C%E4%B9%8B%E4%B8%80.md
+
+
 def spider_comm():
     # (a, b) = commands.getstatusoutput("scrapy crawl cnblog")
     print('爬取程序开始')
@@ -24,8 +27,9 @@ def spider_comm():
 def earning_scheduler():
     print('开始执行')
     scheduler = BlockingScheduler()
-    scheduler.add_job(spider_comm, 'interval',hour=1)
+    scheduler.add_job(spider_comm, 'interval', hours=1)
     scheduler.start()
+
 
 if __name__ == '__main__':
     earning_scheduler()
