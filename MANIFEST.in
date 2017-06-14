@@ -1,0 +1,2 @@
+# 包含scrapy 必须的文件
+include scrapy.cfg
