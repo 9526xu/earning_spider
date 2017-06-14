@@ -23,7 +23,7 @@ ROBOTSTXT_OBEY = True
 
 #数据库配置
 DATABASE = {'drivername': 'mysql+pymysql',
-            'host': '104.199.212.95',
+            'host': 'mysql',
             'port': '3306',
             'username': 'root',
             'password': 'qwer1234',
