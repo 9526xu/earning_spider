@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 
-
 import datetime
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
@@ -17,7 +16,6 @@ from sqlalchemy.orm import sessionmaker
 from earning_spider.model import NASDAQ_earning
 from earning_spider.settings import DATABASE
 from scrapy.exceptions import DropItem
-
 
 
 @contextmanager
@@ -59,18 +57,19 @@ class EarningPipline(object):
         # 股票代码
         url = item['company_url']
         code = url.split('/')[-1]
-
+        expectDate = item['expect_report_date']
+        # 根据期望日期与 code 去重
         query = session.query(NASDAQ_earning).filter(and_(
-            NASDAQ_earning.code == code, NASDAQ_earning.gmt_create.between(now, tomorrow)))
+            NASDAQ_earning.code == code, NASDAQ_earning.expect_date == expectDate))
         count = query.count()
-    
+
         if(count > 1):
-            raise DropItem('已经存在这个公司财报信息%s'%item)
+            raise DropItem('已经存在这个公司财报信息%s' % item)
 
         # 构建数据库对象
         earning = NASDAQ_earning(
             company=company, code=code,
-            capital_amount=capital_amount, expect_date=item['expect_report_date'],
+            capital_amount=capital_amount, expect_date=expectDate,
             deadline_date=item['fiscal_quarter_ending'], per_share_earnings_expect=item['consensus'],
             expect_num=item['ests'], last_year_report_date=item['last_yeat_report_date'],
             last_year_per_share_earnings=item['last_year_eps'],

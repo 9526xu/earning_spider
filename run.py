@@ -6,7 +6,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 
 def crawlByName():
-    print(get_project_settings())
+   # print(get_project_settings())
     process = CrawlerProcess(get_project_settings())
 
     process.crawl(EarningSpider)
@@ -33,4 +33,4 @@ def earning_scheduler():
 
 if __name__ == '__main__':
     earning_scheduler()
-    # crawlByName()
+    #crawlByName()
