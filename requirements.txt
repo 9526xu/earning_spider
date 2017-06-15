@@ -2,3 +2,4 @@ scrapy
 sqlalchemy
 pymysql
 apscheduler
+scrapy_splash
