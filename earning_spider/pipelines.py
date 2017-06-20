@@ -63,7 +63,7 @@ class EarningPipline(object):
             NASDAQ_earning.code == code, NASDAQ_earning.expect_date == expectDate))
         count = query.count()
 
-        if(count > 1):
+        if(count >= 1):
             raise DropItem('已经存在这个公司财报信息%s' % item)
 
         # 构建数据库对象
