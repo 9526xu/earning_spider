@@ -31,7 +31,7 @@ DATABASE = {'drivername': 'mysql+pymysql',
             'query': {'charset': 'utf8'}}
 
 #splash 配置           
-SPLASH_URL = 'http://splash:8050'
+SPLASH_URL = 'http://127.0.0.1:8050'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32

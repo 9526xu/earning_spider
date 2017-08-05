@@ -8,7 +8,7 @@ class SpiderS1(scrapy.Spider):
     def start_requests(self):
 
         urls = ['http://www.nasdaq.com/earnings/earnings-calendar.aspx']
-
+        #urls = ['http://car.autohome.com.cn/price/brand-15.html']
         requests = []
         for url in urls:
             url = url.strip()
@@ -17,5 +17,7 @@ class SpiderS1(scrapy.Spider):
         return requests
 
     def parse(self, response):
-        print('sadasdasdaasdas')
-        self.log(response.body())
+        html = response.body
+        print(html)
+        table=response.xpath('//table[@id="ECCompaniesTable"]').extract_first()
+        print(table)
