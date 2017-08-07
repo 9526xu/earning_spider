@@ -20,7 +20,7 @@ class EarningSpider(scrapy.Spider):
         for tr_html in trs:
             yield self.parseTable(tr_html)
         for tr_html in trs2:
-            yield self.parseTable(tr_html)
+            yield self.parseTable2(tr_html)
 
     def parseTable(self, tr_html):
         item = EarnItenm()
@@ -44,4 +44,28 @@ class EarningSpider(scrapy.Spider):
         item['last_year_eps'] = tr_html.xpath(
             './td[8]/text()').extract_first().strip()
         # print(item['company'])
+        return item
+
+    def parseTable2(self, tr_html):
+        item = EarnItenm()
+        item['time'] = '-'
+        item['company'] = tr_html.xpath(
+            './td[1]//a/text()').extract_first().strip()
+        # item['market_cap'] = tr_html.xpath(
+        #     './td[2]/a///b/text()').extract_first()
+        item['company_url'] = tr_html.xpath(
+            './/td[1]/a/@href').extract_first().strip()
+        item['expect_report_date'] = tr_html.xpath(
+            './td[2]/text()').extract_first().strip()
+        item['fiscal_quarter_ending'] = tr_html.xpath(
+            './td[3]/text()').extract_first().strip()
+        item['consensus'] = tr_html.xpath(
+            './td[4]/text()').extract_first().strip()
+        item['ests'] = tr_html.xpath('./td[5]/text()').extract_first().strip()
+        item['last_yeat_report_date'] = tr_html.xpath(
+            './td[6]/text()').extract_first().strip()
+        item['last_year_eps'] = tr_html.xpath(
+            './td[7]/text()').extract_first().strip()
+        # print('asdasd')
+        # print(item)
         return item
