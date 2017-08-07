@@ -26,7 +26,8 @@ def spider_comm():
 
 def earning_scheduler():
     print('开始执行')
-    #spider_comm()
+    # 先执行一次
+    spider_comm()
     scheduler = BlockingScheduler()
     scheduler.add_job(spider_comm, 'interval', hours=1)
     scheduler.start()

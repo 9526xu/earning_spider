@@ -18,9 +18,9 @@ class EarningSpider(scrapy.Spider):
         trs2 = response.xpath(
             '//div[@class="stock-tab _tab-2"]//table[@id="table-saw"]/tbody/tr')
         for tr_html in trs:
-            self.parseTable(tr_html)
+            yield self.parseTable(tr_html)
         for tr_html in trs2:
-            self.parseTable(tr_html)
+            yield self.parseTable(tr_html)
 
     def parseTable(self, tr_html):
         item = EarnItenm()
@@ -44,4 +44,4 @@ class EarningSpider(scrapy.Spider):
         item['last_year_eps'] = tr_html.xpath(
             './td[8]/text()').extract_first().strip()
         # print(item['company'])
-        yield item
+        return item
