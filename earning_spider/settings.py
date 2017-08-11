@@ -26,7 +26,7 @@ DATABASE = {'drivername': 'mysql+pymysql',
             'host': 'mysql',
             'port': '3306',
             'username': 'root',
-            'password': 'qwer1234',
+            'password': 'qwer123',
             'database': 'finance',
             'query': {'charset': 'utf8'}}
 
